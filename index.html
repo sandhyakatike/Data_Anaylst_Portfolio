@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandhya Rani Katike — Data Anaylst Portfolio</title>
+    <!-- Open Graph for Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sandhya Rani Katike — Data Anaylst Portfolio">
+    <meta name="twitter:description"
+        content="Explore my data science & full-stack projects! #DataScience #MachineLearning">
+    <meta name="twitter:image" content="[your-portfolio-image-url]">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Prism.js for Code Highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <!-- Swiper.js for Project Carousel -->
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.441.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@4.2.0/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .glass {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .animate-slide-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-slide-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .job-card,
+        .project-card,
+        .skill-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .job-card:hover,
+        .project-card:hover,
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .swiper {
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .skill-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .skill-icon:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 640px) {
+            .hero-buttons {
+                @apply flex-col gap-2;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            input,
+            textarea {
+                @apply h-12 placeholder-gray-400;
+            }
+
+            .text-5xl {
+                font-size: 2.5rem;
+            }
+
+            .text-3xl {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white dark transition-colors duration-300">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 bg-gray-900 bg-opacity-90 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-semibold">Sandhya Rani Katike</a>
+            <div class="space-x-4">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="p-6 max-w-5xl mx-auto space-y-12 pt-20">
+        <!-- Theme Toggle -->
+        <div class="fixed top-4 right-4 z-50">
+            <button id="themeToggle" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700" aria-label="Toggle theme">
+                <i data-lucide="sun" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Hero -->
+        <div id="hero" class="glass p-8 text-center animate-slide-in">
+            <img src="Profile.jpeg" alt="Sandhya Rani Katike" class="rounded-full w-24 h-24 mx-auto mb-4" loading="lazy">
+            <h1 class="text-5xl font-bold">Sandhya Rani Katike</h1>
+            <p class="mt-2 text-gray-100">Saint Louis, MO • </p>
+            <p class="mt-1">
+                <a href="mailto:chandu.bathula16@gmail.com" class="underline hover:text-blue-400">Email</a> |
+                <a href="https://www.linkedin.com/in/sandhya-rani-25a8811a7/"
+                    class="underline hover:text-blue-400">LinkedIn</a> |
+                <a href="https://github.com/sandhyakatike" class="underline hover:text-blue-400">GitHub</a> |
+                <a href="https://sandhyakatike.github.io/"
+                    class="underline hover:text-blue-400">Portfolio</a>
+            </p>
+            <div class="mt-4 flex flex-col sm:flex-row justify-center gap-4 hero-buttons">
+                <a href="https://github.com/sandhyakatike/Sandhya_Rani_Katike_Resume"
+                    class="px-4 py-2 bg-blue-600 text-white rounded shadow hover:bg-blue-500">Download CV</a>
+                <button id="contactBtn"
+                    class="px-4 py-2 border border-blue-400 text-blue-400 rounded hover:bg-blue-400 hover:text-white">Contact
+                    Me</button>
+                <a href="https://x.com/sandhyakatike"
+                    class="px-4 py-2 border border-blue-400 text-blue-400 rounded hover:bg-blue-400 hover:text-white flex items-center gap-2">
+                    <i data-lucide="twitter" class="w-5 h-5"></i> Share on Twitter
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div id="contact" class="glass p-6 hidden animate-slide-in" aria-label="Contact form">
+            <h2 class="text-3xl font-semibold mb-6">Contact Me</h2>
+            <form id="emailForm" class="space-y-4">
+                <input type="text" name="name" placeholder="Your Name"
+                    class="w-full p-2 rounded bg-gray-800 text-white h-12 placeholder-gray-400" required />
+                <input type="email" name="email" placeholder="Your Email"
+                    class="w-full p-2 rounded bg-gray-800 text-white h-12 placeholder-gray-400" required />
+                <textarea name="message" placeholder="Your Message"
+                    class="w-full p-2 rounded bg-gray-800 text-white h-32 placeholder-gray-400" required></textarea>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">Send</button>
+            </form>
+        </div>
+
+        <!-- Education -->
+        <div id="education" class="glass p-6 animate-slide-in">
+            <h2 class="text-3xl font-semibold mb-6">Education</h2>
+            <p class="text-gray-100">Master’s in Information Systems – Saint Louis University (GPA: 3.8/4.00, May 2025)
+            </p>
+        </div>
+
+       <!-- Experience -->
+<div id="experience" class="glass p-6 animate-slide-in">
+    <h2 class="text-3xl font-semibold mb-6">Professional Experience</h2>
+    <div class="space-y-4">
+        <div class="glass job-card cursor-pointer p-4" tabindex="0"
+            data-title="Associate Software Engineer"
+            data-company="Tata Consultancy Services, Hyderabad, India"
+            data-period="Oct 2021 – Jul 2023"
+            data-desc="<ul class='list-disc list-inside text-gray-100'>
+                <li>Engineered and deployed data integration solutions using Talend, enhancing operational efficiency in cloud-based environments like AWS and Snowflake.</li>
+                <li>Managed and optimized data workflows through Talend Management Console, ensuring seamless data flow and processing within large-scale systems.</li>
+                <li>Ensured high data quality and compliance by validating processes and maintaining comprehensive technical documentation.</li>
+                <li>Collaborated with cross-functional teams to enhance data operations, supporting Agile methodologies and driving continuous improvement through data modeling and API utilization.</li>
+            </ul>">
+            <h3 class="font-bold text-xl">Associate Software Engineer, Tata Consultancy Services</h3>
+            <p class="text-gray-300">Oct 2021 – Jul 2023</p>
+        </div>
+
+        <div class="glass job-card cursor-pointer p-4" tabindex="0"
+            data-title="Volunteer"
+            data-company="Saint Louis University"
+            data-period="Sep 2023"
+            data-desc="<ul class='list-disc list-inside text-gray-100'>
+                <li>Supported the planning and execution of the Homecoming Event, ensuring a memorable experience for attendees.</li>
+            </ul>">
+            <h3 class="font-bold text-xl">Volunteer, Saint Louis University</h3>
+            <p class="text-gray-300">Sep 2023</p>
+        </div>
+
+        <div class="glass job-card cursor-pointer p-4" tabindex="0"
+            data-title="Team Lead - Project Management Intern"
+            data-company="Excelerate"
+            data-period="May 2023 – Jul 2023"
+            data-desc="<ul class='list-disc list-inside text-gray-100'>
+                <li>Led project coordination and team collaboration during a project management internship.</li>
+                <li>Successfully completed key initiatives while mentoring team members and maintaining deadlines.</li>
+            </ul>">
+            <h3 class="font-bold text-xl">Team Lead, Excelerate (Internship)</h3>
+            <p class="text-gray-300">May 2023 – Jul 2023</p>
+        </div>
+
+        <div class="glass job-card cursor-pointer p-4" tabindex="0"
+            data-title="Event Coordinator"
+            data-company="J.B. Institute of Engineering and Technology"
+            data-period="Dec 2020 – Feb 2020"
+            data-desc="<ul class='list-disc list-inside text-gray-100'>
+                <li>Led Info Quest Tech Fest, managing event logistics to ensure a smooth and engaging experience for participants.</li>
+            </ul>">
+            <h3 class="font-bold text-xl">Coordinator, J.B. Institute of Engineering and Technology</h3>
+            <p class="text-gray-300">Dec 2020 – Feb 2020</p>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Skills -->
+<div id="skills" class="glass p-6 animate-slide-in">
+    <h2 class="text-3xl font-semibold mb-6">Technical Skills</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Programming Languages -->
+        <div class="glass skill-card cursor-pointer p-4" tabindex="0" data-title="Programming Languages"
+            data-desc="<ul class='list-disc list-inside text-gray-100'>
+                <li>Python</li>
+                <li>SQL</li>
+                <li>JavaScript</li>
+            </ul>">
+            <div class="flex items-center gap-2">
+                <i data-lucide="code" class="w-6 h-6 skill-icon"></i>
+                <span class="font-bold text-lg">Programming Languages</span>
+            </div>
+        </div>
+
+        <!-- Data Analysis -->
+        <div class="glass skill-card cursor-pointer p-4" tabindex="0" data-title="Data Analysis / Visualization"
+            data-desc="<ul class='list-disc list-inside text-gray-100'>
+                <li>Tableau</li>
+                <li>Power BI</li>
+                <li>MS Excel (Pivot Tables)</li>
+                <li>Pandas</li>
+                <li>NumPy</li>
+                <li>Matplotlib</li>
+                <li>Seaborn</li>
+                <li>Talend</li>
+            </ul>">
+            <div class="flex items-center gap-2">
+                <i data-lucide="bar-chart-2" class="w-6 h-6 skill-icon"></i>
+                <span class="font-bold text-lg">Data Analysis / Visualization</span>
+            </div>
+        </div>
+
+        <!-- Technical Tools -->
+        <div class="glass skill-card cursor-pointer p-4" tabindex="0" data-title="Technical Tools"
+            data-desc="<ul class='list-disc list-inside text-gray-100'>
+                <li>Snowflake</li>
+                <li>MySQL</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Power Platform</li>
+                <li>Figma</li>
+                <li>Git</li>
+                <li>Microsoft Excel</li>
+            </ul>">
+            <div class="flex items-center gap-2">
+                <i data-lucide="tool" class="w-6 h-6 skill-icon"></i>
+                <span class="font-bold text-lg">Technical Tools</span>
+            </div>
+        </div>
+
+        <!-- Project Management -->
+        <div class="glass skill-card cursor-pointer p-4" tabindex="0" data-title="Project Management"
+            data-desc="<ul class='list-disc list-inside text-gray-100'>
+                <li>Agile</li>
+                <li>Scrum</li>
+                <li>Jira</li>
+                <li>Notion</li>
+                <li>Analytical Thinking</li>
+                <li>Problem-Solving</li>
+            </ul>">
+            <div class="flex items-center gap-2">
+                <i data-lucide="clipboard-list" class="w-6 h-6 skill-icon"></i>
+                <span class="font-bold text-lg">Project Management</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Projects -->
+<div id="projects" class="glass p-6 animate-slide-in">
+    <h2 class="text-3xl font-semibold mb-6">Projects</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- SkillBridge Dashboard (MRP) -->
+        <div class="glass project-card cursor-pointer p-4" tabindex="0"
+            data-title="SkillBridge Dashboard – MRP"
+            data-desc="Power BI dashboard for skill tracking and gap analysis, developed as part of Master’s Research Project at Saint Louis University."
+            data-img="SkillBridge.png"
+            data-github=""
+            data-live="https://app.powerbi.com/groups/me/reports/your-report-link">
+            <img src="SkillBridge.jpeg" alt="SkillBridge Dashboard"
+                class="w-full h-32 object-cover rounded mb-2" loading="lazy">
+            <h3 class="font-bold text-xl">SkillBridge Dashboard – MRP</h3>
+        </div>
+
+        <!-- Tableau Friends Project -->
+        <div class="glass project-card cursor-pointer p-4" tabindex="0"
+            data-title="Friends Analytics Dashboard"
+            data-desc="Tableau dashboard analyzing screen time, character insights, and episode breakdowns from the TV show Friends."
+            data-img="friends.png"
+            data-github=""
+            data-live="https://public.tableau.com/app/profile/sandhya.rani.katike/viz/Friends_17429621486700/Dashboard1">
+            <img src="friends.png" alt="Friends Tableau Dashboard"
+                class="w-full h-32 object-cover rounded mb-2" loading="lazy">
+            <h3 class="font-bold text-xl">Friends Analytics Dashboard</h3>
+        </div>
+
+        <!-- Tableau Amazon Prime Project -->
+        <div class="glass project-card cursor-pointer p-4" tabindex="0"
+            data-title="Amazon Prime Dashboard"
+            data-desc="Interactive Tableau dashboard analyzing Amazon Prime usage metrics and customer behavior."
+            data-img="amazon.png"
+            data-github=""
+            data-live="https://public.tableau.com/app/profile/sandhya.rani.katike/viz/amazonprimeDashboard/Dashboard1">
+            <img src="amazon.png" alt="Amazon Prime Tableau"
+                class="w-full h-32 object-cover rounded mb-2" loading="lazy">
+            <h3 class="font-bold text-xl">Amazon Prime Dashboard</h3>
+        </div>
+
+        <!-- Figma UX/UI Design -->
+        <div class="glass project-card cursor-pointer p-4" tabindex="0"
+            data-title="UX Design: Student Skill Platform"
+            data-desc="End-to-end Figma UI/UX prototype for a student skill platform, focusing on project listings, profiles, and real-time collaboration tools."
+            data-img="figma.png"
+            data-github=""
+            data-live="https://www.figma.com/proto/WNGk49iPoKGKADtryZO5WI/Untitled?node-id=33-72&t=LQBbqh5eDBVJ9Kip-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=33%3A72">
+            <img src="figma.png" alt="UX Design Project"
+                class="w-full h-32 object-cover rounded mb-2" loading="lazy">
+            <h3 class="font-bold text-xl">UX Design: Student Skill Platform</h3>
+        </div>
+
+    </div>
+</div>
+
+
+        <!-- Publications & Awards -->
+        <!-- <div class="glass p-6 animate-slide-in">
+            <h2 class="text-3xl font-semibold mb-6">Publications & Awards</h2>
+            <ul class="list-disc list-inside text-gray-100">
+                <li><strong>First Author:</strong> “Enterprise Application Tool to Discover Midwest Job Trends.” <a
+                        href="[your-publication-url]" class="underline hover:text-blue-400" id="pubLink">View
+                        Publication</a></li>
+                <li>Awarded Distinguished Student for Master’s research and GPA excellence.</li>
+            </ul> -->
+            <!-- <div id="codeSample" class="mt-4">
+                <h3 class="font-bold text-xl">Code Sample: 3D PCA Visualization</h3>
+                <pre class="bg-gray-800 p-4 rounded"><code class="language-python">import plotly.express as px
+from sklearn.decomposition import PCA
+pca = PCA(n_components=3)
+components = pca.fit_transform(X)
+fig = px.scatter_3d(components, x=0, y=1, z=2)
+fig.show()</code></pre>
+            </div> -->
+        </div>
+
+        <!-- Social -->
+        <div class="text-center space-x-4 animate-slide-in mb-4">
+            <a href="https://github.com/sandhyakatike" aria-label="GitHub"><i data-lucide="github"
+                    class="inline w-8 h-8 hover:text-blue-400 cursor-pointer"></i></a>
+            <a href="https://www.linkedin.com/in/sandhya-rani-25a8811a7/" aria-label="LinkedIn"><i data-lucide="linkedin"
+                    class="inline w-8 h-8 hover:text-blue-400 cursor-pointer"></i></a>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+        role="dialog" aria-labelledby="projectModalTitle">
+        <div class="glass p-6 max-w-lg text-center">
+            <button id="closeProjectModal" class="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-700"
+                aria-label="Close modal">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 id="projectModalTitle" class="text-xl font-bold mb-2"></h3>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img id="projectModalImg" src="" alt="Project image" loading="lazy"></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+            <p id="projectModalDesc" class="text-gray-100 mb-4"></p>
+            <div class="flex justify-center gap-4">
+                <a id="projectModalGithub" href="#" target="_blank"
+                    class="px-4 py-2 border border-blue-400 text-blue-400 rounded hover:bg-blue-400 hover:text-white flex items-center gap-2">
+                    <i data-lucide="github" class="w-5 h-5"></i> GitHub
+                </a>
+                <a id="projectModalLive" href="#" target="_blank"
+                    class="px-4 py-2 border border-blue-400 text-blue-400 rounded hover:bg-blue-400 hover:text-white flex items-center gap-2">
+                    <i data-lucide="laptop" class="w-5 h-6"></i> Live Demo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Modal -->
+    <div id="jobModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+        role="dialog" aria-labelledby="jobModalTitle">
+        <div class="glass p-6 max-w-lg text-center">
+            <button id="closeJobModal" class="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-700"
+                aria-label="Close modal">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 id="jobModalTitle" class="text-xl font-bold mb-2"></h3>
+            <p id="jobModalCompany" class="text-gray-300 mb-2"></p>
+            <p id="jobModalPeriod" class="text-gray-300 mb-4"></p>
+            <div id="jobModalDesc" class="text-gray-100 text-left"></div>
+        </div>
+    </div>
+
+    <!-- Skill Modal -->
+    <div id="skillModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+        role="dialog" aria-labelledby="skillModalTitle">
+        <div class="glass p-6 max-w-lg text-center">
+            <button id="closeSkillModal" class="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-700"
+                aria-label="Close modal">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 id="skillModalTitle" class="text-xl font-bold mb-2"></h3>
+            <div id="skillModalDesc" class="text-gray-100 text-left"></div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.error('Lucide library failed to load');
+                document.write('<script src="local/lucide.min.js"><\/script>');
+            }
+
+            // Initialize EmailJS
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init({ publicKey: "YOUR_EMAILJS_USER_ID" });
+                const emailForm = document.getElementById('emailForm');
+                const contactForm = document.getElementById('contact');
+                if (emailForm) {
+                    emailForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target)
+                            .then(() => {
+                                alert('Message sent successfully!');
+                                e.target.reset();
+                                contactForm.classList.add('hidden');
+                            }, (error) => {
+                                alert('Failed to send message: ' + JSON.stringify(error));
+                            });
+                    });
+                }
+            } else {
+                console.error('EmailJS library failed to load');
+                document.getElementById('contactBtn').addEventListener('click', () => {
+                    alert('Contact form is currently unavailable.');
+                });
+            }
+
+            // Initialize Swiper
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.swiper', {
+                    loop: true,
+                    navigation: {
+                        nextEl: '.swiper-button-prev',
+                        prevEl: '.swiper-button-next',
+                    },
+                });
+            } else {
+                console.error('Swiper library failed to load');
+            }
+
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+                themeToggle.innerHTML = '<i data-lucide="sun" class="w-6 h-6"></i>';
+            } else {
+                themeToggle.innerHTML = '<i data-lucide="moon" class="w-6 h-6"></i>';
+            }
+            lucide.createIcons();
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                const isDark = document.body.classList.contains('dark');
+                themeToggle.innerHTML = `<i data-lucide="${isDark ? 'sun' : 'moon'}" class="w-6 h-6"></i>`;
+                lucide.createIcons();
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+
+            // Scroll Animations
+            const animateElements = document.querySelectorAll('.animate-slide-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            animateElements.forEach(el => observer.observe(el));
+
+            // Project Modal
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.getElementById('projectModalTitle').textContent = card.dataset.title;
+                    document.getElementById('projectModalDesc').textContent = card.dataset.desc;
+                    document.getElementById('projectModalImg').src = card.dataset.img || 'https://via.placeholder.com/300';
+                    document.getElementById('projectModalGithub').href = card.dataset.github || '#';
+                    document.getElementById('projectModalLive').href = card.dataset.live || '#';
+                    document.getElementById('projectModal').classList.remove('hidden');
+                    if (typeof Swiper !== 'undefined') {
+                        const swiper = document.querySelector('.swiper').swiper;
+                        swiper.update();
+                    }
+                });
+                card.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') card.click();
+                });
+            });
+
+            // Job Modal
+            document.querySelectorAll('.job-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.getElementById('jobModalTitle').textContent = card.dataset.title;
+                    document.getElementById('jobModalCompany').textContent = card.dataset.company;
+                    document.getElementById('jobModalPeriod').textContent = card.dataset.period;
+                    document.getElementById('jobModalDesc').innerHTML = card.dataset.desc;
+                    document.getElementById('jobModal').classList.remove('hidden');
+                });
+                card.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') card.click();
+                });
+            });
+
+            // Skill Modal
+            document.querySelectorAll('.skill-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.getElementById('skillModalTitle').textContent = card.dataset.title;
+                    document.getElementById('skillModalDesc').innerHTML = card.dataset.desc;
+                    document.getElementById('skillModal').classList.remove('hidden');
+                });
+                card.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') card.click();
+                });
+            });
+
+            // Close Modals
+            const projectModal = document.getElementById('projectModal');
+            const closeProjectModal = document.getElementById('closeProjectModal');
+            const jobModal = document.getElementById('jobModal');
+            const closeJobModal = document.getElementById('closeJobModal');
+            const skillModal = document.getElementById('skillModal');
+            const closeSkillModal = document.getElementById('closeSkillModal');
+            closeProjectModal.addEventListener('click', () => projectModal.classList.add('hidden'));
+            closeJobModal.addEventListener('click', () => jobModal.classList.add('hidden'));
+            closeSkillModal.addEventListener('click', () => skillModal.classList.add('hidden'));
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    projectModal.classList.add('hidden');
+                    jobModal.classList.add('hidden');
+                    skillModal.classList.add('hidden');
+                }
+            });
+
+            // Contact Form Toggle
+            document.getElementById('contactBtn').addEventListener('click', () => {
+                document.getElementById('contact').classList.toggle('hidden');
+            });
+
+            // Highlight Code
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            } else {
+                console.error('Prism.js library failed to load');
+            }
+        });
+    </script>
+</body>
+
+</html>
