@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sandhya Rani Katike — Data Anaylst Portfolio</title>
+    <title>Sandhya Rani Katike — Data Analyst Portfolio</title>
     <!-- Open Graph for Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sandhya Rani Katike — Data Anaylst Portfolio">
+    <meta name="twitter:title" content="Sandhya Rani Katike — Data Analyst Portfolio">
     <meta name="twitter:description"
         content="Explore my data science & full-stack projects! #DataScience #MachineLearning">
     <meta name="twitter:image" content="[your-portfolio-image-url]">
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Poppins & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Prism.js for Code Highlighting -->
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
     <!-- Swiper.js for Project Carousel -->
@@ -26,31 +26,44 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
 
         :root {
-            --primary-color: #2563eb;
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --accent-color: #06b6d4;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
         }
 
         .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .dark .glass {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(15, 23, 42, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
         }
 
         .animate-slide-in {
             opacity: 0;
             transform: translateY(50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
         .animate-slide-in.visible {
@@ -58,21 +71,86 @@
             transform: translateY(0);
         }
 
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .animate-bounce-in {
+            animation: bounceIn 0.6s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         .job-card,
         .project-card,
         .skill-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before,
+        .project-card::before,
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .job-card:hover::before,
+        .project-card:hover::before,
+        .skill-card:hover::before {
+            left: 100%;
         }
 
         .job-card:hover,
         .project-card:hover,
         .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .nav-link:hover {
             color: var(--primary-color);
+            background: rgba(59, 130, 246, 0.1);
         }
 
         .swiper {
@@ -89,11 +167,116 @@
         }
 
         .skill-icon {
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .skill-icon:hover {
-            transform: scale(1.2);
+            transform: scale(1.3) rotate(5deg);
+            color: var(--primary-color);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.1));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-elements::before {
+            top: 10%;
+            left: 10%;
+            animation-delay: -2s;
+        }
+
+        .floating-elements::after {
+            bottom: 10%;
+            right: 10%;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .professional-badge {
+            background: linear-gradient(45deg, #3b82f6, #06b6d4);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .professional-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 2px;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .stats-counter {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 3px;
+            transform-origin: left;
+            transition: transform 1s ease-out;
         }
 
         @media (max-width: 640px) {
@@ -117,16 +300,40 @@
             .text-3xl {
                 font-size: 1.75rem;
             }
+
+            .floating-elements::before,
+            .floating-elements::after {
+                display: none;
+            }
+        }
+
+        .dark {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .typing-effect {
+            border-right: 2px solid #3b82f6;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: #3b82f6; }
+            51%, 100% { border-color: transparent; }
         }
     </style>
 </head>
 
-<body class="bg-gray-900 text-white dark transition-colors duration-300">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-500">
+    <!-- Floating Background Elements -->
+    <div class="floating-elements"></div>
+
     <!-- Navigation Bar -->
-    <nav class="fixed top-0 left-0 right-0 bg-gray-900 bg-opacity-90 z-50">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-semibold">Sandhya Rani Katike</a>
-            <div class="space-x-4">
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg z-50 border-b border-gray-200/50 dark:border-gray-700/50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                Sandhya Rani Katike
+            </a>
+            <div class="hidden md:flex space-x-1">
                 <a href="#hero" class="nav-link">Home</a>
                 <a href="#education" class="nav-link">Education</a>
                 <a href="#experience" class="nav-link">Experience</a>
@@ -134,333 +341,553 @@
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200/50 dark:border-gray-700/50">
+            <div class="px-6 py-4 space-y-2">
+                <a href="#hero" class="block nav-link">Home</a>
+                <a href="#education" class="block nav-link">Education</a>
+                <a href="#experience" class="block nav-link">Experience</a>
+                <a href="#skills" class="block nav-link">Skills</a>
+                <a href="#projects" class="block nav-link">Projects</a>
+                <a href="#contact" class="block nav-link">Contact</a>
+            </div>
         </div>
     </nav>
 
-    <div class="p-6 max-w-5xl mx-auto space-y-12 pt-20">
+    <div class="max-w-6xl mx-auto px-6 space-y-16 pt-24 pb-12">
         <!-- Theme Toggle -->
-        <div class="fixed top-4 right-4 z-50">
-            <button id="themeToggle" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700" aria-label="Toggle theme">
-                <i data-lucide="sun" class="w-6 h-6"></i>
+        <div class="fixed top-6 right-6 z-50">
+            <button id="themeToggle" class="p-3 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg shadow-lg hover:scale-110 transition-all duration-300" aria-label="Toggle theme">
+                <i data-lucide="sun" class="w-5 h-5"></i>
             </button>
         </div>
 
         <!-- Hero -->
-        <div id="hero" class="glass p-8 text-center animate-slide-in">
-            <img src="Profile.jpeg" alt="Sandhya Rani Katike" class="rounded-full w-24 h-24 mx-auto mb-4" loading="lazy">
-            <h1 class="text-5xl font-bold">Sandhya Rani Katike</h1>
-            <p class="mt-2 text-gray-100">Saint Louis, MO • </p>
-            <p class="mt-1">
-                <a href="mailto:chandu.bathula16@gmail.com" class="underline hover:text-blue-400">Email</a> |
-                <a href="https://www.linkedin.com/in/sandhya-rani-25a8811a7/"
-                    class="underline hover:text-blue-400">LinkedIn</a> |
-                <a href="https://github.com/sandhyakatike" class="underline hover:text-blue-400">GitHub</a> |
-                <a href="https://sandhyakatike.github.io/"
-                    class="underline hover:text-blue-400">Portfolio</a>
-            </p>
-            <div class="mt-4 flex flex-col sm:flex-row justify-center gap-4 hero-buttons">
-                <a href="https://github.com/sandhyakatike/Sandhya_Rani_Katike_Resume"
-                    class="px-4 py-2 bg-blue-600 text-white rounded shadow hover:bg-blue-500">Download CV</a>
-                <button id="contactBtn"
-                    class="px-4 py-2 border border-blue-400 text-blue-400 rounded hover:bg-blue-400 hover:text-white">Contact
-                    Me</button>
-                <a href="https://x.com/sandhyakatike"
-                    class="px-4 py-2 border border-blue-400 text-blue-400 rounded hover:bg-blue-400 hover:text-white flex items-center gap-2">
-                    <i data-lucide="twitter" class="w-5 h-5"></i> Share on Twitter
-                </a>
+        <div id="hero" class="hero-gradient glass p-12 text-center animate-slide-in relative overflow-hidden">
+            <div class="relative z-10">
+                <div class="animate-bounce-in">
+                    <img src="Profile.jpeg" alt="Sandhya Rani Katike" class="rounded-full w-32 h-32 mx-auto mb-6 border-4 border-white/30 shadow-2xl" loading="lazy">
+                </div>
+                <h1 class="text-6xl font-bold text-white mb-4">Sandhya Rani Katike</h1>
+                <div class="text-xl text-white/90 mb-2 typing-effect">Data Analyst • Information Systems • Saint Louis, MO</div>
+                <div class="flex flex-wrap justify-center gap-2 mb-6">
+                    <span class="professional-badge">Python</span>
+                    <span class="professional-badge">SQL</span>
+                    <span class="professional-badge">Tableau</span>
+                    <span class="professional-badge">Power BI</span>
+                    <span class="professional-badge">Machine Learning</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 text-white/90">
+                    <a href="mailto:sandhyarani.katike@slu.edu" class="flex items-center gap-2 hover:text-white transition-colors">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/sandhya-rani-25a8811a7/" class="flex items-center gap-2 hover:text-white transition-colors">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/sandhyakatike" class="flex items-center gap-2 hover:text-white transition-colors">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                        GitHub
+                    </a>
+                    <a href="https://sandhyakatike.github.io/" class="flex items-center gap-2 hover:text-white transition-colors">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                        Portfolio
+                    </a>
+                </div>
             </div>
         </div>
 
-        <!-- Contact Form -->
-        <div id="contact" class="glass p-6 hidden animate-slide-in" aria-label="Contact form">
-            <h2 class="text-3xl font-semibold mb-6">Contact Me</h2>
-            <form id="emailForm" class="space-y-4">
-                <input type="text" name="name" placeholder="Your Name"
-                    class="w-full p-2 rounded bg-gray-800 text-white h-12 placeholder-gray-400" required />
-                <input type="email" name="email" placeholder="Your Email"
-                    class="w-full p-2 rounded bg-gray-800 text-white h-12 placeholder-gray-400" required />
-                <textarea name="message" placeholder="Your Message"
-                    class="w-full p-2 rounded bg-gray-800 text-white h-32 placeholder-gray-400" required></textarea>
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">Send</button>
-            </form>
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 animate-slide-in">
+            <div class="glass p-6 text-center">
+                <div class="stats-counter" data-target="2">0</div>
+                <div class="text-gray-600 dark:text-gray-400">Years Experience</div>
+            </div>
+            <div class="glass p-6 text-center">
+                <div class="stats-counter" data-target="5">0</div>
+                <div class="text-gray-600 dark:text-gray-400">Projects Completed</div>
+            </div>
+            <div class="glass p-6 text-center">
+                <div class="stats-counter" data-target="10">0</div>
+                <div class="text-gray-600 dark:text-gray-400">Technologies</div>
+            </div>
+            <div class="glass p-6 text-center">
+                <div class="stats-counter" data-target="3.8">0</div>
+                <div class="text-gray-600 dark:text-gray-400">GPA</div>
+            </div>
         </div>
 
         <!-- Education -->
-        <div id="education" class="glass p-6 animate-slide-in">
-            <h2 class="text-3xl font-semibold mb-6">Education</h2>
-            <p class="text-gray-100">Master’s in Information Systems – Saint Louis University (GPA: 3.8/4.00, May 2025)
-            </p>
+        <div id="education" class="glass p-8 animate-slide-in">
+            <h2 class="text-4xl font-bold text-center section-header">Education</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-6 rounded-xl border-l-4 border-blue-500">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Master's in Information Systems</h3>
+                    <p class="text-xl text-blue-600 dark:text-blue-400 mb-2">Saint Louis University</p>
+                    <div class="flex items-center justify-between flex-wrap gap-4">
+                        <span class="text-gray-600 dark:text-gray-400">Expected: May 2025</span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-bold text-green-600">3.8/4.0</span>
+                            <span class="text-gray-600 dark:text-gray-400">GPA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-       <!-- Experience -->
-<div id="experience" class="glass p-6 animate-slide-in">
-    <h2 class="text-3xl font-semibold mb-6">Professional Experience</h2>
-    <div class="space-y-4">
-        <div class="glass job-card cursor-pointer p-4" tabindex="0"
-            data-title="Associate Software Engineer"
-            data-company="Tata Consultancy Services, Hyderabad, India"
-            data-period="Oct 2021 – Jul 2023"
-            data-desc="<ul class='list-disc list-inside text-gray-100'>
-                <li>Engineered and deployed data integration solutions using Talend, enhancing operational efficiency in cloud-based environments like AWS and Snowflake.</li>
-                <li>Managed and optimized data workflows through Talend Management Console, ensuring seamless data flow and processing within large-scale systems.</li>
-                <li>Ensured high data quality and compliance by validating processes and maintaining comprehensive technical documentation.</li>
-                <li>Collaborated with cross-functional teams to enhance data operations, supporting Agile methodologies and driving continuous improvement through data modeling and API utilization.</li>
-            </ul>">
-            <h3 class="font-bold text-xl">Associate Software Engineer, Tata Consultancy Services</h3>
-            <p class="text-gray-300">Oct 2021 – Jul 2023</p>
-        </div>
+        <!-- Experience -->
+        <div id="experience" class="glass p-8 animate-slide-in">
+            <h2 class="text-4xl font-bold text-center section-header">Professional Experience</h2>
+            <div class="space-y-6">
+                <div class="glass job-card cursor-pointer p-6 border-l-4 border-blue-500" tabindex="0"
+                    data-title="Associate Software Engineer"
+                    data-company="Tata Consultancy Services, Hyderabad, India"
+                    data-period="Oct 2021 – Jul 2023"
+                    data-desc="<ul class='list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2'>
+                        <li>Engineered and deployed data integration solutions using Talend, enhancing operational efficiency in cloud-based environments like AWS and Snowflake.</li>
+                        <li>Managed and optimized data workflows through Talend Management Console, ensuring seamless data flow and processing within large-scale systems.</li>
+                        <li>Ensured high data quality and compliance by validating processes and maintaining comprehensive technical documentation.</li>
+                        <li>Collaborated with cross-functional teams to enhance data operations, supporting Agile methodologies and driving continuous improvement through data modeling and API utilization.</li>
+                    </ul>">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Associate Software Engineer</h3>
+                            <p class="text-blue-600 dark:text-blue-400 font-medium">Tata Consultancy Services</p>
+                            <p class="text-gray-600 dark:text-gray-400">Hyderabad, India</p>
+                        </div>
+                        <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">
+                            Oct 2021 – Jul 2023
+                        </span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">Talend</span>
+                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">AWS</span>
+                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">Snowflake</span>
+                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">Data Integration</span>
+                    </div>
+                </div>
 
-        <div class="glass job-card cursor-pointer p-4" tabindex="0"
-            data-title="Volunteer"
-            data-company="Saint Louis University"
-            data-period="Sep 2023"
-            data-desc="<ul class='list-disc list-inside text-gray-100'>
-                <li>Supported the planning and execution of the Homecoming Event, ensuring a memorable experience for attendees.</li>
-            </ul>">
-            <h3 class="font-bold text-xl">Volunteer, Saint Louis University</h3>
-            <p class="text-gray-300">Sep 2023</p>
-        </div>
+                <div class="glass job-card cursor-pointer p-6 border-l-4 border-green-500" tabindex="0"
+                    data-title="Team Lead - Project Management Intern"
+                    data-company="Excelerate"
+                    data-period="May 2023 – Jul 2023"
+                    data-desc="<ul class='list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2'>
+                        <li>Led project coordination and team collaboration during a project management internship.</li>
+                        <li>Successfully completed key initiatives while mentoring team members and maintaining deadlines.</li>
+                    </ul>">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Team Lead - Project Management Intern</h3>
+                            <p class="text-green-600 dark:text-green-400 font-medium">Excelerate</p>
+                        </div>
+                        <span class="bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">
+                            May 2023 – Jul 2023
+                        </span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">Leadership</span>
+                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">Project Management</span>
+                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">Team Coordination</span>
+                    </div>
+                </div>
 
-        <div class="glass job-card cursor-pointer p-4" tabindex="0"
-            data-title="Team Lead - Project Management Intern"
-            data-company="Excelerate"
-            data-period="May 2023 – Jul 2023"
-            data-desc="<ul class='list-disc list-inside text-gray-100'>
-                <li>Led project coordination and team collaboration during a project management internship.</li>
-                <li>Successfully completed key initiatives while mentoring team members and maintaining deadlines.</li>
-            </ul>">
-            <h3 class="font-bold text-xl">Team Lead, Excelerate (Internship)</h3>
-            <p class="text-gray-300">May 2023 – Jul 2023</p>
+                <div class="glass job-card cursor-pointer p-6 border-l-4 border-purple-500" tabindex="0"
+                    data-title="Volunteer"
+                    data-company="Saint Louis University"
+                    data-period="Sep 2023"
+                    data-desc="<ul class='list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2'>
+                        <li>Supported the planning and execution of the Homecoming Event, ensuring a memorable experience for attendees.</li>
+                    </ul>">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Volunteer</h3>
+                            <p class="text-purple-600 dark:text-purple-400 font-medium">Saint Louis University</p>
+                        </div>
+                        <span class="bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium">
+                            Sep 2023
+                        </span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">Event Planning</span>
+                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">Community Service</span>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="glass job-card cursor-pointer p-4" tabindex="0"
-            data-title="Event Coordinator"
-            data-company="J.B. Institute of Engineering and Technology"
-            data-period="Dec 2020 – Feb 2020"
-            data-desc="<ul class='list-disc list-inside text-gray-100'>
-                <li>Led Info Quest Tech Fest, managing event logistics to ensure a smooth and engaging experience for participants.</li>
-            </ul>">
-            <h3 class="font-bold text-xl">Coordinator, J.B. Institute of Engineering and Technology</h3>
-            <p class="text-gray-300">Dec 2020 – Feb 2020</p>
-        </div>
-    </div>
-</div>
-
 
         <!-- Skills -->
-<div id="skills" class="glass p-6 animate-slide-in">
-    <h2 class="text-3xl font-semibold mb-6">Technical Skills</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div id="skills" class="glass p-8 animate-slide-in">
+            <h2 class="text-4xl font-bold text-center section-header">Technical Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass skill-card cursor-pointer p-6 text-center" tabindex="0" data-title="Programming Languages"
+                    data-desc="<div class='space-y-3'>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>Python</span>
+                                <span class='text-gray-500'>90%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.9)'></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>SQL</span>
+                                <span class='text-gray-500'>95%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.95)'></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>JavaScript</span>
+                                <span class='text-gray-500'>75%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.75)'></div>
+                            </div>
+                        </div>
+                    </div>">
+                    <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="code" class="w-8 h-8 skill-icon text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 dark:text-white">Programming Languages</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">Python, SQL, JavaScript</p>
+                </div>
 
-        <!-- Programming Languages -->
-        <div class="glass skill-card cursor-pointer p-4" tabindex="0" data-title="Programming Languages"
-            data-desc="<ul class='list-disc list-inside text-gray-100'>
-                <li>Python</li>
-                <li>SQL</li>
-                <li>JavaScript</li>
-            </ul>">
-            <div class="flex items-center gap-2">
-                <i data-lucide="code" class="w-6 h-6 skill-icon"></i>
-                <span class="font-bold text-lg">Programming Languages</span>
+                <div class="glass skill-card cursor-pointer p-6 text-center" tabindex="0" data-title="Data Analysis / Visualization"
+                    data-desc="<div class='space-y-3'>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>Tableau</span>
+                                <span class='text-gray-500'>92%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.92)'></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>Power BI</span>
+                                <span class='text-gray-500'>88%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.88)'></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>Excel</span>
+                                <span class='text-gray-500'>90%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.9)'></div>
+                            </div>
+                        </div>
+                    </div>">
+                    <div class="bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/30 dark:to-green-800/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="bar-chart-2" class="w-8 h-8 skill-icon text-green-600 dark:text-green-400"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 dark:text-white">Data Analysis / Visualization</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">Tableau, Power BI, Excel</p>
+                </div>
+
+                <div class="glass skill-card cursor-pointer p-6 text-center" tabindex="0" data-title="Technical Tools"
+                    data-desc="<div class='space-y-3'>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>Snowflake</span>
+                                <span class='text-gray-500'>85%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.85)'></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>MySQL</span>
+                                <span class='text-gray-500'>88%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.88)'></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>Git</span>
+                                <span class='text-gray-500'>80%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.8)'></div>
+                            </div>
+                        </div>
+                    </div>">
+                    <div class="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/30 dark:to-purple-800/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="tool" class="w-8 h-8 skill-icon text-purple-600 dark:text-purple-400"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 dark:text-white">Technical Tools</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">Snowflake, MySQL, Git, Figma</p>
+                </div>
+
+                <div class="glass skill-card cursor-pointer p-6 text-center" tabindex="0" data-title="Project Management"
+                    data-desc="<div class='space-y-3'>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>Agile/Scrum</span>
+                                <span class='text-gray-500'>90%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.9)'></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>Jira</span>
+                                <span class='text-gray-500'>85%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.85)'></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='flex justify-between mb-1'>
+                                <span class='text-gray-700 dark:text-gray-300'>Problem Solving</span>
+                                <span class='text-gray-500'>95%</span>
+                            </div>
+                            <div class='progress-bar'>
+                                <div class='progress-fill' style='transform: scaleX(0.95)'></div>
+                            </div>
+                        </div>
+                    </div>">
+                    <div class="bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="clipboard-list" class="w-8 h-8 skill-icon text-orange-600 dark:text-orange-400"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 dark:text-white">Project Management</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">Agile, Scrum, Jira, Leadership</p>
+                </div>
             </div>
         </div>
-
-        <!-- Data Analysis -->
-        <div class="glass skill-card cursor-pointer p-4" tabindex="0" data-title="Data Analysis / Visualization"
-            data-desc="<ul class='list-disc list-inside text-gray-100'>
-                <li>Tableau</li>
-                <li>Power BI</li>
-                <li>MS Excel (Pivot Tables)</li>
-                <li>Pandas</li>
-                <li>NumPy</li>
-                <li>Matplotlib</li>
-                <li>Seaborn</li>
-                <li>Talend</li>
-            </ul>">
-            <div class="flex items-center gap-2">
-                <i data-lucide="bar-chart-2" class="w-6 h-6 skill-icon"></i>
-                <span class="font-bold text-lg">Data Analysis / Visualization</span>
-            </div>
-        </div>
-
-        <!-- Technical Tools -->
-        <div class="glass skill-card cursor-pointer p-4" tabindex="0" data-title="Technical Tools"
-            data-desc="<ul class='list-disc list-inside text-gray-100'>
-                <li>Snowflake</li>
-                <li>MySQL</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>Power Platform</li>
-                <li>Figma</li>
-                <li>Git</li>
-                <li>Microsoft Excel</li>
-            </ul>">
-            <div class="flex items-center gap-2">
-                <i data-lucide="tool" class="w-6 h-6 skill-icon"></i>
-                <span class="font-bold text-lg">Technical Tools</span>
-            </div>
-        </div>
-
-        <!-- Project Management -->
-        <div class="glass skill-card cursor-pointer p-4" tabindex="0" data-title="Project Management"
-            data-desc="<ul class='list-disc list-inside text-gray-100'>
-                <li>Agile</li>
-                <li>Scrum</li>
-                <li>Jira</li>
-                <li>Notion</li>
-                <li>Analytical Thinking</li>
-                <li>Problem-Solving</li>
-            </ul>">
-            <div class="flex items-center gap-2">
-                <i data-lucide="clipboard-list" class="w-6 h-6 skill-icon"></i>
-                <span class="font-bold text-lg">Project Management</span>
-            </div>
-        </div>
-    </div>
-</div>
-
 
         <!-- Projects -->
-<div id="projects" class="glass p-6 animate-slide-in">
-    <h2 class="text-3xl font-semibold mb-6">Projects</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="projects" class="glass p-8 animate-slide-in">
+            <h2 class="text-4xl font-bold text-center section-header">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- SkillBridge Dashboard (MRP) -->
+                <div class="glass project-card cursor-pointer p-6 group" tabindex="0"
+                    data-title="SkillBridge Dashboard – MRP"
+                    data-desc="Comprehensive Power BI dashboard for skill tracking and gap analysis, developed as part of Master's Research Project at Saint Louis University. Features interactive visualizations for workforce development and skill assessment."
+                    data-img="SkillBridge.jpeg"
+                    data-github=""
+                    data-live="https://app.powerbi.com/groups/me/reports/your-report-link">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="SkillBridge.jpeg" alt="SkillBridge Dashboard"
+                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="flex gap-2">
+                                <span class="bg-blue-600 px-2 py-1 rounded text-xs">Power BI</span>
+                                <span class="bg-green-600 px-2 py-1 rounded text-xs">Research</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-2">SkillBridge Dashboard – MRP</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Master's Research Project featuring advanced analytics</p>
+                </div>
 
-        <!-- SkillBridge Dashboard (MRP) -->
-        <div class="glass project-card cursor-pointer p-4" tabindex="0"
-            data-title="SkillBridge Dashboard – MRP"
-            data-desc="Power BI dashboard for skill tracking and gap analysis, developed as part of Master’s Research Project at Saint Louis University."
-            data-img="SkillBridge.png"
-            data-github=""
-            data-live="https://app.powerbi.com/groups/me/reports/your-report-link">
-            <img src="SkillBridge.jpeg" alt="SkillBridge Dashboard"
-                class="w-full h-32 object-cover rounded mb-2" loading="lazy">
-            <h3 class="font-bold text-xl">SkillBridge Dashboard – MRP</h3>
+                <!-- Friends Analytics Dashboard -->
+                <div class="glass project-card cursor-pointer p-6 group" tabindex="0"
+                    data-title="Friends TV Show Analytics"
+                    data-desc="Interactive Tableau dashboard analyzing screen time, character insights, and episode breakdowns from the popular TV show Friends. Includes sentiment analysis and character relationship mapping."
+                    data-img="friends.png"
+                    data-github=""
+                    data-live="https://public.tableau.com/app/profile/sandhya.rani.katike/viz/Friends_17429621486700/Dashboard1">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="friends.png" alt="Friends Analytics Dashboard"
+                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="flex gap-2">
+                                <span class="bg-orange-600 px-2 py-1 rounded text-xs">Tableau</span>
+                                <span class="bg-purple-600 px-2 py-1 rounded text-xs">Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-2">Friends Analytics Dashboard</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Data visualization of TV show metrics and insights</p>
+                </div>
+
+                <!-- Amazon Prime Dashboard -->
+                <div class="glass project-card cursor-pointer p-6 group" tabindex="0"
+                    data-title="Amazon Prime Analytics"
+                    data-desc="Comprehensive Tableau dashboard analyzing Amazon Prime content trends, user engagement metrics, and streaming patterns. Features geographic analysis and content categorization."
+                    data-img="amazon.png"
+                    data-github=""
+                    data-live="https://public.tableau.com/app/profile/sandhya.rani.katike/viz/amazonprimeDashboard/Dashboard1">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="amazon.png" alt="Amazon Prime Dashboard"
+                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="flex gap-2">
+                                <span class="bg-blue-600 px-2 py-1 rounded text-xs">Tableau</span>
+                                <span class="bg-yellow-600 px-2 py-1 rounded text-xs">Streaming</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-2">Amazon Prime Dashboard</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Streaming platform analytics and user behavior</p>
+                </div>
+
+                <!-- UX Design Project -->
+                <div class="glass project-card cursor-pointer p-6 group" tabindex="0"
+                    data-title="Student Skill Platform - UX Design"
+                    data-desc="End-to-end Figma UI/UX prototype for a comprehensive student skill platform. Features project listings, user profiles, real-time collaboration tools, and skill assessment modules."
+                    data-img="figma.png"
+                    data-github=""
+                    data-live="https://www.figma.com/proto/WNGk49iPoKGKADtryZO5WI/Untitled?node-id=33-72&t=LQBbqh5eDBVJ9Kip-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=33%3A72">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="figma.png" alt="UX Design Project"
+                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="flex gap-2">
+                                <span class="bg-pink-600 px-2 py-1 rounded text-xs">Figma</span>
+                                <span class="bg-indigo-600 px-2 py-1 rounded text-xs">UX/UI</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-2">Student Skill Platform</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Complete UX/UI design and prototyping</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Tableau Friends Project -->
-        <div class="glass project-card cursor-pointer p-4" tabindex="0"
-            data-title="Friends Analytics Dashboard"
-            data-desc="Tableau dashboard analyzing screen time, character insights, and episode breakdowns from the TV show Friends."
-            data-img="friends.png"
-            data-github=""
-            data-live="https://public.tableau.com/app/profile/sandhya.rani.katike/viz/Friends_17429621486700/Dashboard1">
-            <img src="friends.png" alt="Friends Tableau Dashboard"
-                class="w-full h-32 object-cover rounded mb-2" loading="lazy">
-            <h3 class="font-bold text-xl">Friends Analytics Dashboard</h3>
+        <!-- Contact Section -->
+        <div id="contact" class="glass p-8 animate-slide-in">
+            <h2 class="text-4xl font-bold text-center section-header">Let's Connect</h2>
+            <div class="max-w-3xl mx-auto text-center">
+                <p class="text-gray-600 dark:text-gray-400 text-lg mb-8">
+                    I'm always open to discussing new opportunities, collaborations, or just having a chat about data science and technology.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <a href="mailto:sandhyarani.katike@slu.edu" class="glass p-6 hover:scale-105 transition-all duration-300 group">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="mail" class="w-8 h-8 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Email</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">sandhyarani.katike@slu.edu</p>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/sandhya-rani-25a8811a7/" target="_blank" class="glass p-6 hover:scale-105 transition-all duration-300 group">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="linkedin" class="w-8 h-8 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">LinkedIn</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Connect with me</p>
+                    </a>
+                    
+                    <a href="https://github.com/sandhyakatike" target="_blank" class="glass p-6 hover:scale-105 transition-all duration-300 group">
+                        <div class="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800/30 dark:to-gray-700/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="github" class="w-8 h-8 text-gray-700 dark:text-gray-300 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">GitHub</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">View my projects</p>
+                    </a>
+
+                    <a href="https://x.com/sandhyakatike" target="_blank" class="glass p-6 hover:scale-105 transition-all duration-300 group">
+                        <div class="bg-gradient-to-br from-sky-100 to-sky-200 dark:from-sky-900/30 dark:to-sky-800/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="twitter" class="w-8 h-8 text-sky-600 dark:text-sky-400 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">X (Twitter)</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Follow me</p>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <!-- Tableau Amazon Prime Project -->
-        <div class="glass project-card cursor-pointer p-4" tabindex="0"
-            data-title="Amazon Prime Dashboard"
-            data-desc="Interactive Tableau dashboard analyzing Amazon Prime usage metrics and customer behavior."
-            data-img="amazon.png"
-            data-github=""
-            data-live="https://public.tableau.com/app/profile/sandhya.rani.katike/viz/amazonprimeDashboard/Dashboard1">
-            <img src="amazon.png" alt="Amazon Prime Tableau"
-                class="w-full h-32 object-cover rounded mb-2" loading="lazy">
-            <h3 class="font-bold text-xl">Amazon Prime Dashboard</h3>
+        <!-- Social Links -->
+        <div class="text-center space-x-6 animate-slide-in">
+            <a href="https://github.com/sandhyakatike" aria-label="GitHub" class="inline-block p-4 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 hover:scale-110 transform">
+                <i data-lucide="github" class="w-6 h-6 text-gray-700 dark:text-gray-300"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/sandhya-rani-25a8811a7/" aria-label="LinkedIn" class="inline-block p-4 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 hover:scale-110 transform">
+                <i data-lucide="linkedin" class="w-6 h-6 text-gray-700 dark:text-gray-300"></i>
+            </a>
+            <a href="mailto:sandhyarani.katike@slu.edu" aria-label="Email" class="inline-block p-4 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 hover:scale-110 transform">
+                <i data-lucide="mail" class="w-6 h-6 text-gray-700 dark:text-gray-300"></i>
+            </a>
         </div>
 
-        <!-- Figma UX/UI Design -->
-        <div class="glass project-card cursor-pointer p-4" tabindex="0"
-            data-title="UX Design: Student Skill Platform"
-            data-desc="End-to-end Figma UI/UX prototype for a student skill platform, focusing on project listings, profiles, and real-time collaboration tools."
-            data-img="figma.png"
-            data-github=""
-            data-live="https://www.figma.com/proto/WNGk49iPoKGKADtryZO5WI/Untitled?node-id=33-72&t=LQBbqh5eDBVJ9Kip-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=33%3A72">
-            <img src="figma.png" alt="UX Design Project"
-                class="w-full h-32 object-cover rounded mb-2" loading="lazy">
-            <h3 class="font-bold text-xl">UX Design: Student Skill Platform</h3>
-        </div>
-
-    </div>
-</div>
-
-
-        <!-- Publications & Awards -->
-        <!-- <div class="glass p-6 animate-slide-in">
-            <h2 class="text-3xl font-semibold mb-6">Publications & Awards</h2>
-            <ul class="list-disc list-inside text-gray-100">
-                <li><strong>First Author:</strong> “Enterprise Application Tool to Discover Midwest Job Trends.” <a
-                        href="[your-publication-url]" class="underline hover:text-blue-400" id="pubLink">View
-                        Publication</a></li>
-                <li>Awarded Distinguished Student for Master’s research and GPA excellence.</li>
-            </ul> -->
-            <!-- <div id="codeSample" class="mt-4">
-                <h3 class="font-bold text-xl">Code Sample: 3D PCA Visualization</h3>
-                <pre class="bg-gray-800 p-4 rounded"><code class="language-python">import plotly.express as px
-from sklearn.decomposition import PCA
-pca = PCA(n_components=3)
-components = pca.fit_transform(X)
-fig = px.scatter_3d(components, x=0, y=1, z=2)
-fig.show()</code></pre>
-            </div> -->
-        </div>
-
-        <!-- Social -->
-        <div class="text-center space-x-4 animate-slide-in mb-4">
-            <a href="https://github.com/sandhyakatike" aria-label="GitHub"><i data-lucide="github"
-                    class="inline w-8 h-8 hover:text-blue-400 cursor-pointer"></i></a>
-            <a href="https://www.linkedin.com/in/sandhya-rani-25a8811a7/" aria-label="LinkedIn"><i data-lucide="linkedin"
-                    class="inline w-8 h-8 hover:text-blue-400 cursor-pointer"></i></a>
+        <!-- Footer -->
+        <div class="text-center text-gray-600 dark:text-gray-400 py-8 border-t border-gray-200 dark:border-gray-700">
+            <p>&copy; 2025 Sandhya Rani Katike. Built with passion and precision.</p>
         </div>
     </div>
 
     <!-- Project Modal -->
-    <div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+    <div id="projectModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center hidden z-50"
         role="dialog" aria-labelledby="projectModalTitle">
-        <div class="glass p-6 max-w-lg text-center">
-            <button id="closeProjectModal" class="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-700"
+        <div class="glass p-8 max-w-2xl max-h-[90vh] overflow-y-auto m-4">
+            <button id="closeProjectModal" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 aria-label="Close modal">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
-            <h3 id="projectModalTitle" class="text-xl font-bold mb-2"></h3>
-            <div class="swiper">
+            <h3 id="projectModalTitle" class="text-2xl font-bold mb-4 text-gray-900 dark:text-white"></h3>
+            <div class="swiper mb-6">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img id="projectModalImg" src="" alt="Project image" loading="lazy"></div>
+                    <div class="swiper-slide"><img id="projectModalImg" src="" alt="Project image" class="rounded-lg" loading="lazy"></div>
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
             </div>
-            <p id="projectModalDesc" class="text-gray-100 mb-4"></p>
+            <p id="projectModalDesc" class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed"></p>
             <div class="flex justify-center gap-4">
                 <a id="projectModalGithub" href="#" target="_blank"
-                    class="px-4 py-2 border border-blue-400 text-blue-400 rounded hover:bg-blue-400 hover:text-white flex items-center gap-2">
+                    class="px-6 py-3 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center gap-2">
                     <i data-lucide="github" class="w-5 h-5"></i> GitHub
                 </a>
                 <a id="projectModalLive" href="#" target="_blank"
-                    class="px-4 py-2 border border-blue-400 text-blue-400 rounded hover:bg-blue-400 hover:text-white flex items-center gap-2">
-                    <i data-lucide="laptop" class="w-5 h-6"></i> Live Demo
+                    class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center gap-2">
+                    <i data-lucide="external-link" class="w-5 h-5"></i> Live Demo
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Job Modal -->
-    <div id="jobModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+    <div id="jobModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center hidden z-50"
         role="dialog" aria-labelledby="jobModalTitle">
-        <div class="glass p-6 max-w-lg text-center">
-            <button id="closeJobModal" class="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-700"
+        <div class="glass p-8 max-w-2xl max-h-[90vh] overflow-y-auto m-4">
+            <button id="closeJobModal" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 aria-label="Close modal">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
-            <h3 id="jobModalTitle" class="text-xl font-bold mb-2"></h3>
-            <p id="jobModalCompany" class="text-gray-300 mb-2"></p>
-            <p id="jobModalPeriod" class="text-gray-300 mb-4"></p>
-            <div id="jobModalDesc" class="text-gray-100 text-left"></div>
+            <h3 id="jobModalTitle" class="text-2xl font-bold mb-2 text-gray-900 dark:text-white"></h3>
+            <p id="jobModalCompany" class="text-blue-600 dark:text-blue-400 font-medium mb-2"></p>
+            <p id="jobModalPeriod" class="text-gray-500 dark:text-gray-400 mb-6"></p>
+            <div id="jobModalDesc" class="text-gray-600 dark:text-gray-300 leading-relaxed"></div>
         </div>
     </div>
 
     <!-- Skill Modal -->
-    <div id="skillModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+    <div id="skillModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center hidden z-50"
         role="dialog" aria-labelledby="skillModalTitle">
-        <div class="glass p-6 max-w-lg text-center">
-            <button id="closeSkillModal" class="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-700"
+        <div class="glass p-8 max-w-lg max-h-[90vh] overflow-y-auto m-4">
+            <button id="closeSkillModal" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 aria-label="Close modal">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
-            <h3 id="skillModalTitle" class="text-xl font-bold mb-2"></h3>
-            <div id="skillModalDesc" class="text-gray-100 text-left"></div>
+            <h3 id="skillModalTitle" class="text-2xl font-bold mb-6 text-gray-900 dark:text-white"></h3>
+            <div id="skillModalDesc" class="text-gray-600 dark:text-gray-300"></div>
         </div>
     </div>
 
@@ -471,63 +898,97 @@ fig.show()</code></pre>
                 lucide.createIcons();
             } else {
                 console.error('Lucide library failed to load');
-                document.write('<script src="local/lucide.min.js"><\/script>');
             }
 
-            // Initialize EmailJS
-            if (typeof emailjs !== 'undefined') {
-                emailjs.init({ publicKey: "YOUR_EMAILJS_USER_ID" });
-                const emailForm = document.getElementById('emailForm');
-                const contactForm = document.getElementById('contact');
-                if (emailForm) {
-                    emailForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target)
-                            .then(() => {
-                                alert('Message sent successfully!');
-                                e.target.reset();
-                                contactForm.classList.add('hidden');
-                            }, (error) => {
-                                alert('Failed to send message: ' + JSON.stringify(error));
-                            });
-                    });
-                }
-            } else {
-                console.error('EmailJS library failed to load');
-                document.getElementById('contactBtn').addEventListener('click', () => {
-                    alert('Contact form is currently unavailable.');
-                });
-            }
+            // Initialize EmailJS - Removed since contact form is removed
+            // No longer needed
 
             // Initialize Swiper
             if (typeof Swiper !== 'undefined') {
                 new Swiper('.swiper', {
                     loop: true,
                     navigation: {
-                        nextEl: '.swiper-button-prev',
-                        prevEl: '.swiper-button-next',
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
                     },
                 });
-            } else {
-                console.error('Swiper library failed to load');
             }
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.setAttribute('data-lucide', 'menu');
+                } else {
+                    icon.setAttribute('data-lucide', 'x');
+                }
+                lucide.createIcons();
+            });
+
+            // Close mobile menu when clicking on links
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                });
+            });
 
             // Theme Toggle
             const themeToggle = document.getElementById('themeToggle');
-            if (localStorage.getItem('theme') === 'dark') {
-                document.body.classList.add('dark');
-                themeToggle.innerHTML = '<i data-lucide="sun" class="w-6 h-6"></i>';
+            const body = document.body;
+            
+            // Check for saved theme preference or default to light mode
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                themeToggle.innerHTML = '<i data-lucide="sun" class="w-5 h-5"></i>';
             } else {
-                themeToggle.innerHTML = '<i data-lucide="moon" class="w-6 h-6"></i>';
+                body.classList.remove('dark');
+                themeToggle.innerHTML = '<i data-lucide="moon" class="w-5 h-5"></i>';
             }
             lucide.createIcons();
+
             themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark');
-                const isDark = document.body.classList.contains('dark');
-                themeToggle.innerHTML = `<i data-lucide="${isDark ? 'sun' : 'moon'}" class="w-6 h-6"></i>`;
+                body.classList.toggle('dark');
+                const isDark = body.classList.contains('dark');
+                themeToggle.innerHTML = `<i data-lucide="${isDark ? 'sun' : 'moon'}" class="w-5 h-5"></i>`;
                 lucide.createIcons();
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
             });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Stats Counter Animation
+            const animateCounter = (element, target) => {
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = current === Math.floor(current) ? current : current.toFixed(1);
+                }, 20);
+            };
 
             // Scroll Animations
             const animateElements = document.querySelectorAll('.animate-slide-in');
@@ -535,9 +996,19 @@ fig.show()</code></pre>
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                        
+                        // Animate counters when stats section comes into view
+                        if (entry.target.querySelector('.stats-counter')) {
+                            const counters = entry.target.querySelectorAll('.stats-counter');
+                            counters.forEach(counter => {
+                                const target = parseFloat(counter.getAttribute('data-target'));
+                                animateCounter(counter, target);
+                            });
+                        }
                     }
                 });
             }, { threshold: 0.1 });
+            
             animateElements.forEach(el => observer.observe(el));
 
             // Project Modal
@@ -545,15 +1016,34 @@ fig.show()</code></pre>
                 card.addEventListener('click', () => {
                     document.getElementById('projectModalTitle').textContent = card.dataset.title;
                     document.getElementById('projectModalDesc').textContent = card.dataset.desc;
-                    document.getElementById('projectModalImg').src = card.dataset.img || 'https://via.placeholder.com/300';
-                    document.getElementById('projectModalGithub').href = card.dataset.github || '#';
-                    document.getElementById('projectModalLive').href = card.dataset.live || '#';
+                    document.getElementById('projectModalImg').src = card.dataset.img || 'https://via.placeholder.com/400x200';
+                    
+                    const githubLink = document.getElementById('projectModalGithub');
+                    const liveLink = document.getElementById('projectModalLive');
+                    
+                    if (card.dataset.github) {
+                        githubLink.href = card.dataset.github;
+                        githubLink.style.display = 'flex';
+                    } else {
+                        githubLink.style.display = 'none';
+                    }
+                    
+                    if (card.dataset.live) {
+                        liveLink.href = card.dataset.live;
+                        liveLink.style.display = 'flex';
+                    } else {
+                        liveLink.style.display = 'none';
+                    }
+                    
                     document.getElementById('projectModal').classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                    
                     if (typeof Swiper !== 'undefined') {
                         const swiper = document.querySelector('.swiper').swiper;
-                        swiper.update();
+                        if (swiper) swiper.update();
                     }
                 });
+                
                 card.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') card.click();
                 });
@@ -567,7 +1057,9 @@ fig.show()</code></pre>
                     document.getElementById('jobModalPeriod').textContent = card.dataset.period;
                     document.getElementById('jobModalDesc').innerHTML = card.dataset.desc;
                     document.getElementById('jobModal').classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
                 });
+                
                 card.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') card.click();
                 });
@@ -579,41 +1071,165 @@ fig.show()</code></pre>
                     document.getElementById('skillModalTitle').textContent = card.dataset.title;
                     document.getElementById('skillModalDesc').innerHTML = card.dataset.desc;
                     document.getElementById('skillModal').classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
                 });
+                
                 card.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') card.click();
                 });
             });
 
             // Close Modals
-            const projectModal = document.getElementById('projectModal');
-            const closeProjectModal = document.getElementById('closeProjectModal');
-            const jobModal = document.getElementById('jobModal');
-            const closeJobModal = document.getElementById('closeJobModal');
-            const skillModal = document.getElementById('skillModal');
-            const closeSkillModal = document.getElementById('closeSkillModal');
-            closeProjectModal.addEventListener('click', () => projectModal.classList.add('hidden'));
-            closeJobModal.addEventListener('click', () => jobModal.classList.add('hidden'));
-            closeSkillModal.addEventListener('click', () => skillModal.classList.add('hidden'));
+            const modals = [
+                { modal: 'projectModal', closeBtn: 'closeProjectModal' },
+                { modal: 'jobModal', closeBtn: 'closeJobModal' },
+                { modal: 'skillModal', closeBtn: 'closeSkillModal' }
+            ];
+
+            modals.forEach(({ modal, closeBtn }) => {
+                const modalElement = document.getElementById(modal);
+                const closeButton = document.getElementById(closeBtn);
+                
+                closeButton.addEventListener('click', () => {
+                    modalElement.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+                
+                // Close modal when clicking outside
+                modalElement.addEventListener('click', (e) => {
+                    if (e.target === modalElement) {
+                        modalElement.classList.add('hidden');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+
+            // Close modals with Escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
-                    projectModal.classList.add('hidden');
-                    jobModal.classList.add('hidden');
-                    skillModal.classList.add('hidden');
+                    modals.forEach(({ modal }) => {
+                        const modalElement = document.getElementById(modal);
+                        if (!modalElement.classList.contains('hidden')) {
+                            modalElement.classList.add('hidden');
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
                 }
             });
 
-            // Contact Form Toggle
-            document.getElementById('contactBtn').addEventListener('click', () => {
-                document.getElementById('contact').classList.toggle('hidden');
-            });
-
-            // Highlight Code
+            // Highlight Code (if Prism is available)
             if (typeof Prism !== 'undefined') {
                 Prism.highlightAll();
-            } else {
-                console.error('Prism.js library failed to load');
             }
+
+            // Add loading states and error handling
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.addEventListener('load', () => {
+                    img.classList.add('animate-fade-in');
+                });
+                
+                img.addEventListener('error', () => {
+                    img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0yMDAgMTAwTDE1MCA3NUwyNTAgNzVMMjAwIDEwMFoiIGZpbGw9IiM5Q0EzQUYiLz4KPHN2Zz4K';
+                    img.alt = 'Image not available';
+                });
+            });
+
+            // Performance optimization: Lazy load non-critical content
+            setTimeout(() => {
+                // Initialize any heavy animations or features after initial load
+                console.log('Portfolio fully loaded and optimized');
+            }, 1000);
+
+            // Add scroll progress indicator
+            const scrollProgress = document.createElement('div');
+            scrollProgress.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 3px;
+                background: linear-gradient(90deg, #3b82f6, #06b6d4);
+                z-index: 9999;
+                transition: width 0.1s ease;
+            `;
+            document.body.appendChild(scrollProgress);
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.offsetHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                scrollProgress.style.width = scrollPercent + '%';
+            });
+
+            // Add floating action button for quick contact
+            const fab = document.createElement('button');
+            fab.innerHTML = '<i data-lucide="message-circle" class="w-6 h-6"></i>';
+            fab.style.cssText = `
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: linear-gradient(45deg, #3b82f6, #06b6d4);
+                color: white;
+                border: none;
+                box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+                cursor: pointer;
+                z-index: 1000;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            fab.addEventListener('mouseenter', () => {
+                fab.style.transform = 'scale(1.1)';
+                fab.style.boxShadow = '0 12px 35px rgba(59, 130, 246, 0.6)';
+            });
+            
+            fab.addEventListener('mouseleave', () => {
+                fab.style.transform = 'scale(1)';
+                fab.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.4)';
+            });
+            
+            fab.addEventListener('click', () => {
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            document.body.appendChild(fab);
+            lucide.createIcons();
+
+            // Initialize tooltips for social links
+            const socialLinks = document.querySelectorAll('a[aria-label]');
+            socialLinks.forEach(link => {
+                link.addEventListener('mouseenter', (e) => {
+                    const tooltip = document.createElement('div');
+                    tooltip.textContent = e.target.getAttribute('aria-label');
+                    tooltip.style.cssText = `
+                        position: absolute;
+                        bottom: 120%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: rgba(0, 0, 0, 0.8);
+                        color: white;
+                        padding: 0.5rem 1rem;
+                        border-radius: 0.5rem;
+                        font-size: 0.875rem;
+                        white-space: nowrap;
+                        z-index: 1000;
+                        pointer-events: none;
+                    `;
+                    e.target.style.position = 'relative';
+                    e.target.appendChild(tooltip);
+                });
+                
+                link.addEventListener('mouseleave', (e) => {
+                    const tooltip = e.target.querySelector('div');
+                    if (tooltip) tooltip.remove();
+                });
+            });
         });
     </script>
 </body>
